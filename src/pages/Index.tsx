@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "@/components/layout/Layout";
 import StatCard from "@/components/dashboard/StatCard";
@@ -6,6 +5,7 @@ import RiskGauge from "@/components/dashboard/RiskGauge";
 import ContractsList from "@/components/dashboard/ContractsList";
 import RiskBreakdown from "@/components/dashboard/RiskBreakdown";
 import UpcomingDeadlines from "@/components/dashboard/UpcomingDeadlines";
+import RiskVisualization from "@/components/dashboard/RiskVisualization";
 import { FileText, AlertTriangle, CalendarClock, CheckCircle } from "lucide-react";
 
 const Index = () => {
@@ -93,6 +93,46 @@ const Index = () => {
     },
   ];
 
+  // Mock data for risk visualizations
+  const riskVisualizations = [
+    {
+      id: "rv1",
+      title: "Payment Default Risk",
+      riskScore: 75,
+      severity: 80,
+      likelihood: 60,
+      subContractors: [
+        { id: "sc1", name: "Global Logistics Inc", role: "Shipping" },
+        { id: "sc2", name: "Acme Payment Services", role: "Payment Processing" },
+        { id: "sc3", name: "SecureTech Solutions", role: "IT Support" },
+      ]
+    },
+    {
+      id: "rv2",
+      title: "Compliance Violation Risk",
+      riskScore: 45,
+      severity: 65,
+      likelihood: 35,
+      subContractors: [
+        { id: "sc4", name: "LegalEase Associates", role: "Compliance" },
+        { id: "sc5", name: "DataGuard Systems", role: "Data Management" },
+        { id: "sc6", name: "RegTech Advisors", role: "Regulatory Affairs" },
+      ]
+    },
+    {
+      id: "rv3",
+      title: "Supply Chain Disruption Risk",
+      riskScore: 82,
+      severity: 70,
+      likelihood: 90,
+      subContractors: [
+        { id: "sc7", name: "FastTrack Delivery", role: "Last Mile Delivery" },
+        { id: "sc8", name: "WarehouseNow", role: "Storage & Inventory" },
+        { id: "sc9", name: "Parts Unlimited", role: "Manufacturing" },
+      ]
+    }
+  ];
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -138,6 +178,20 @@ const Index = () => {
             description="Based on AI analysis of your current contract portfolio"
           />
           <RiskBreakdown data={riskData} />
+        </div>
+        
+        {/* New Risk Visualizations Section */}
+        <div className="grid gap-4 md:grid-cols-3">
+          {riskVisualizations.map(risk => (
+            <RiskVisualization
+              key={risk.id}
+              title={risk.title}
+              riskScore={risk.riskScore}
+              severity={risk.severity}
+              likelihood={risk.likelihood}
+              subContractors={risk.subContractors}
+            />
+          ))}
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">

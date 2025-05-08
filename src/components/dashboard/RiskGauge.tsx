@@ -12,10 +12,10 @@ interface RiskGaugeProps {
 const RiskGauge: React.FC<RiskGaugeProps> = ({ title, value, description }) => {
   // Determine color based on risk value
   const getColor = () => {
-    if (value <= 25) return "bg-domino-green";
-    if (value <= 50) return "bg-domino-light-blue";
-    if (value <= 75) return "bg-domino-orange";
-    return "bg-domino-red";
+    if (value <= 25) return "var(--domino-green)";
+    if (value <= 50) return "var(--domino-light-blue)";
+    if (value <= 75) return "var(--domino-orange)";
+    return "var(--domino-red)";
   };
 
   // Determine risk label based on value
@@ -36,7 +36,11 @@ const RiskGauge: React.FC<RiskGaugeProps> = ({ title, value, description }) => {
           <span className="text-2xl font-bold">{getRiskLabel()}</span>
           <span className="text-sm text-muted-foreground">{value}%</span>
         </div>
-        <Progress value={value} className="h-2" indicatorClassName={getColor()} />
+        <Progress 
+          value={value} 
+          className="h-2" 
+          style={{ "--progress-background": getColor() } as React.CSSProperties}
+        />
         {description && <p className="text-xs text-muted-foreground">{description}</p>}
       </CardContent>
     </Card>

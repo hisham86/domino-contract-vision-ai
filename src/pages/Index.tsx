@@ -1,3 +1,4 @@
+
 import React from "react";
 import Layout from "@/components/layout/Layout";
 import StatCard from "@/components/dashboard/StatCard";
@@ -6,6 +7,7 @@ import ContractsList from "@/components/dashboard/ContractsList";
 import RiskBreakdown from "@/components/dashboard/RiskBreakdown";
 import UpcomingDeadlines from "@/components/dashboard/UpcomingDeadlines";
 import RiskVisualization from "@/components/dashboard/RiskVisualization";
+import ContractFailureExamples from "@/components/dashboard/ContractFailureExamples";
 import { FileText, AlertTriangle, CalendarClock, CheckCircle } from "lucide-react";
 
 const Index = () => {
@@ -180,7 +182,7 @@ const Index = () => {
           <RiskBreakdown data={riskData} />
         </div>
         
-        {/* New Risk Visualizations Section */}
+        {/* Risk Visualizations Section */}
         <div className="grid gap-4 md:grid-cols-3">
           {riskVisualizations.map(risk => (
             <RiskVisualization
@@ -193,6 +195,9 @@ const Index = () => {
             />
           ))}
         </div>
+
+        {/* Contract Failure Examples Section */}
+        <ContractFailureExamples />
 
         <div className="grid gap-4 md:grid-cols-3">
           <div className="md:col-span-2">
